@@ -23,6 +23,15 @@ so -  Browser ─ GET /socket.io/socket.io.js ─> Server
 
         socket.on("connect", () => {
             console.log("connected to client/frontend")
+
+            // disconnect from client after 3 seconds
+            setTimeout(() => {
+                socket.disconnect();
+            }, 3000);
+        })
+
+        socket.on("disconnect", () => {
+            console.log("disconnected from client")
         })
     </script>
 </body>

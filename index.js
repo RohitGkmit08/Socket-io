@@ -20,7 +20,11 @@ app.get("/", (req, res) => {
 // io.on("connection", callback) -> whenever a new client is connected to Socket.io server, execute this callback.
 // "connection" is an event name built into Socket.io. Socket.IO emits this event whenever a browser successfully establishes a connection.
 io.on("connection", (socket) => {
-    console.log("user connected to server")
+    console.log("user connected to server");
+
+    socket.on("disconnect", () => {
+        console.log("User disconnected")
+    })
 })
 
 const PORT= 3000
