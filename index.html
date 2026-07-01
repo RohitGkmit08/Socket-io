@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket.io </title>
+</head>
+<body>
+    <h1>Socket.io Demo</h1>
+
+<!-- 1. Browser reads html from top to bottom. When it sees "/socket.io/socket.io.js", it needs this file before continuing.
+2. So browser sends another HTTPS request to server GET /socket.io/socket.io.js.
+3. But we never created the file -> "socket.io.js". When we create a Socket.io server (const io = new Server(server)), Socket.io automatically creates a special route : "/socket.io/socket.io.js" and serves it to client-side library.
+so -  Browser ─ GET /socket.io/socket.io.js ─> Server
+      Browser <- JavaScript file - Server.   The browser downloads this file.
+4. What is inside this file ? it provides functions like io(), socket.on(), socket.emit(). -->
+
+    <script src="/socket.io/socket.io.js"></script>
+
+<!-- The browser asks to connect it to Socket.io server running on this website. -->
+    <script type="module">
+        const socket = io()
+
+        socket.on("connect", () => {
+            console.log("connected to client/frontend")
+        })
+    </script>
+</body>
+</html>
